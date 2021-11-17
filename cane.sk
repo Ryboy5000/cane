@@ -1,0 +1,22 @@
+variables:
+	{frame} = black stained glass pane
+	{_item} = sugar cane
+	{cane broke} = 0
+	{money gained} = 0
+	{coins} = 0
+	{cane price} = 1
+
+command /stats:
+	trigger:
+		open virtual chest inventory with size 4 named "&4STATS" to player:
+			format stats slot 0 and 1 and 2 and 3 and 4 and 5 and 6 and 7 and 8 and 9 and 10 and 12 and 14 and 16 and 17 and 18 and 19 and 20 and 21 and 22 and 23 and 24 and 25 and 26 and 27 and 28 and 29 and 30 and 32 and 33 and 34 and 35 of player with {frame} named "&6":
+			format stats slot 11 of player with sugar cane named "&2Cane Mined" with lore "You have %{cane broke}% cane mined":
+			format stats slot 13 of player with black wool named "&8Coins" with lore "you have %{coins}% coins":
+			format stats slot 15 of player with paper named "&5Money Gained" with lore "You have $%{money gained}% money gained from cane":
+			format stats slot 31 of player with barrier named "&4Close" to run:
+				close player's inventory
+on break of {_item}:
+	add 1 to {caneBroke}
+	if {_player}is holding diamond hoe:
+		add 1 to {coins}
+		add {cane price} to {money gained}
